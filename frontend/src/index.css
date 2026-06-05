@@ -1,0 +1,251 @@
+
+/* =========================
+   🎨 FONT IMPORTS
+========================= */
+@import url('https://fonts.googleapis.com/css2?family=Geist+Mono:ital,wght@0,100..900;1,100..900&family=Geist:ital,wght@0,100..900;1,100..900&family=Outfit:wght@100..900&display=swap');
+@import "tailwindcss";
+
+/* =========================
+   🌗 DARK MODE STRATEGY
+========================= */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* =========================
+   🎨 TAILWIND THEME
+   ✅ FIX 1: @theme uses var() — defers to runtime CSS vars correctly.
+   var() doesn't work here because @theme is build-time only.
+========================= */
+@theme {
+  --font-sans: "Outfit", sans-serif;
+  --font-mono: "Geist Mono", monospace;
+
+  --color-main:         var(--main);
+  --color-foreground:   var(--foreground);
+  --color-muted:        var(--muted);
+  --color-card:         var(--card);
+  --color-card-fg:      var(--card-fg);
+  --color-border:       var(--border);
+  --color-primary:      var(--primary);
+  --color-primary-fg:   var(--primary-fg);
+  --color-secondary:    var(--secondary);
+  --color-secondary-fg: var(--secondary-fg);
+  --color-accent:       var(--accent);
+  --color-accent-fg:    var(--accent-fg);
+  --color-success:      var(--success);
+  --color-warning:      var(--warning);
+  --color-danger:       var(--danger);
+  
+}
+
+/* =========================
+   ☀️ LIGHT MODE
+   Color palette: Electric Indigo primary · Sky accent · Warm neutrals
+========================= */
+:root {
+  /* Surfaces */
+  --main:        #fafafa;
+  --foreground:  #0f0f10;
+  --muted:       #71717a;
+  /* ✅ FIX 2: removed alpha from --card (#f5f5f5ac → solid value) */
+  --card:        #ffffff;
+  --card-fg:     #18181b;
+  --border:      #e4e4e7;
+
+  /* ✅ FIX 4: Consistent brand — Electric Indigo across both modes */
+  --primary:     #570294;   /* indigo-500  */
+  --primary-fg:  #ffffff;
+
+  /* Secondary — violet, harmonizes with indigo */
+  --secondary:   #8b5cf6;   /* violet-500  */
+  --secondary-fg:#ffffff;
+
+  /* Accent — sky blue, cool complement */
+  --accent:      #0ea5e9;   /* sky-500     */
+  --accent-fg:   #ffffff;
+
+  /* Semantic */
+  --success:     #22c55e;
+  --warning:     #f59e0b;
+  --danger:      #ef4444;
+
+  /* Gradients — indigo → violet → sky, all harmonious */
+  --gradient-combo:  linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  --gradient-accent: linear-gradient(135deg, #8b5cf6 0%, #0ea5e9 100%);
+  --gradient-warm:   linear-gradient(135deg, #6366f1 0%, #ec4899 100%);
+  --gradient-full:   linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #0ea5e9 100%);
+}
+
+/* =========================
+   🌑 DARK MODE
+   Same hue family, shifted for dark backgrounds
+========================= */
+.dark {
+  /* Surfaces */
+  --main:        #09090b;   /* zinc-950     */
+  --foreground:  #fafafa;   /* zinc-50      */
+  --muted:       #71717a;   /* zinc-500     */
+  --card:        #18181b;   /* zinc-900     */
+  --card-fg:     #e4e4e7;   /* zinc-200     */
+  --border:      #27272a;   /* zinc-800     */
+
+  /* Primary — lighter indigo so it pops on dark */
+  --primary:     #8907e6;   /* indigo-400   */
+  --primary-fg:  #1e1b4b;
+
+  /* Secondary — lighter violet */
+  --secondary:   #a78bfa;   /* violet-400   */
+  --secondary-fg:#1d1130;
+
+  /* Accent — lighter sky */
+  --accent:      #38bdf8;   /* sky-400      */
+  --accent-fg:   #082f49;
+
+  /* Semantic */
+  --success:     #4ade80;
+  --warning:     #fbbf24;
+  --danger:      #f87171;
+
+  /* Dark-tuned gradients */
+  --gradient-combo:  linear-gradient(135deg, #818cf8 0%, #a78bfa 100%);
+  --gradient-accent: linear-gradient(135deg, #a78bfa 0%, #38bdf8 100%);
+  --gradient-warm:   linear-gradient(135deg, #818cf8 0%, #f472b6 100%);
+  --gradient-full:   linear-gradient(135deg, #818cf8 0%, #a78bfa 50%, #38bdf8 100%);
+}
+
+/* =========================
+   🌍 BASE STYLES
+========================= */
+html {
+  scroll-behavior: smooth;
+}
+
+@layer base {
+  body {
+    @apply bg-main text-foreground font-sans;
+    font-optical-sizing: auto;
+    font-feature-settings: 'cv11', 'ss01';
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+}
+
+/* =========================
+   🔤 TYPOGRAPHY
+========================= */
+.heading {
+  letter-spacing: -0.03em;
+}
+
+/* =========================
+   🧱 UI ELEMENTS
+========================= */
+.card {
+  background: var(--card);
+  color: var(--card-fg);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+}
+
+.glass {
+  background: color-mix(in srgb, var(--card) 60%, transparent);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid color-mix(in srgb, var(--border) 50%, transparent);
+}
+
+/* =========================
+   ✨ PREMIUM EFFECTS
+========================= */
+.glow {
+  color: var(--primary);
+  text-shadow: 0 0 28px color-mix(in srgb, var(--primary) 60%, transparent);
+}
+
+/* Primary → Secondary */
+.gradient-text {
+  background: var(--gradient-combo);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Secondary → Accent */
+.gradient-text-accent {
+   background: linear-gradient(135deg,#6366f1,#38bdf8);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text
+}
+
+/* Primary → Pink */
+.gradient-text-warm {
+  background: var(--gradient-warm);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Full three-stop gradient */
+.gradient-text-full {
+  background: var(--gradient-full);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Gradient border */
+.gradient-border {
+  position: relative;
+  border-radius: 14px;
+}
+.gradient-border::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: var(--gradient-combo);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* =========================
+   🧠 SELECTION
+========================= */
+::selection {
+  background: color-mix(in srgb, var(--primary) 25%, transparent);
+  color: var(--foreground);
+}
+
+/* =========================
+   📜 SCROLLBAR
+========================= */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--main); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--primary); }
+
+
+/* =========================
+   📜 SCROLLBAR
+========================= */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--main);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--muted);
+  border-radius: 99px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
+}
