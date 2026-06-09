@@ -35,9 +35,7 @@ export default function Navbar() {
       <header
         className={cn(
           "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-          scrolled
-            ? "py-3 bg-main/80 backdrop-blur-md border-b border-border/40"
-            : "py-5",
+          scrolled ? "py-3 bg-main/80 backdrop-blur-md" : "py-5",
         )}
       >
         <div className="max-w-7xl mx-auto px-5 sm:px-8 flex items-center justify-between">
@@ -57,7 +55,7 @@ export default function Navbar() {
                 href={`#${item.toLowerCase()}`}
                 onClick={() => setActive(item)}
                 className={cn(
-                  "text-[15px] px-3 py-1.5 rounded-lg border transition-all duration-150",
+                  "text-[13px] font-medium px-3 py-1.5 rounded-lg border transition-all duration-150",
                   active === item
                     ? "text-primary bg-primary/8 border-primary/25"
                     : "text-muted border-transparent hover:text-foreground hover:bg-card",

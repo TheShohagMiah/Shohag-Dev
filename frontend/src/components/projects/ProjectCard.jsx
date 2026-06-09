@@ -29,7 +29,7 @@ const ProjectCard = ({ project, index }) => {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "-60px" }}
-      className="group flex flex-col rounded-2xl border border-border bg-card overflow-hidden
+      className="group flex flex-col rounded-lg border border-border bg-card overflow-hidden
                  transition-all duration-300
                  hover:-translate-y-1 hover:border-primary/30 hover:shadow-xl hover:shadow-primary/8"
     >
@@ -67,7 +67,7 @@ const ProjectCard = ({ project, index }) => {
 
       {/* Body */}
       <div className="flex flex-col flex-1 p-5">
-        <h3 className="text-base font-semibold text-foreground mb-2 leading-snug">
+        <h3 className="text-sm font-light tracking-[0.12rem] text-foreground mb-2 leading-snug">
           {title}
         </h3>
         <p className="text-sm text-muted leading-relaxed mb-4 flex-1">
@@ -79,7 +79,7 @@ const ProjectCard = ({ project, index }) => {
           {tags.map((tag) => (
             <span
               key={tag}
-              className="text-[11px] px-2.5 py-1 rounded-full border border-border text-muted"
+              className="text-[11px] font-medium px-2.5 py-1 bg-primary/5 rounded-sm border border-border text-primary flex items-center gap-2 "
             >
               {tag}
             </span>

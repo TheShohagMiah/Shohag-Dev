@@ -51,19 +51,19 @@ const GridItem = ({ index, icon, title, description }) => {
         />
         <div className="border-0.75 relative flex h-full flex-col justify-between gap-6 overflow-hidden rounded-xl p-6 md:p-6 dark:shadow-[0px_0px_27px_0px_#2D2D2D]">
           <div className="relative flex flex-1 flex-col justify-between gap-3">
-            <div className="absolute top-2 right-5 font-syne font-extrabold text-7xl text-white/[0.02] select-none pointer-events-none transition-all duration-300 group-hover:text-white/[0.05]">
+            <div className="absolute top-2 right-5 font-heading font-extrabold text-7xl text-muted/10 select-none pointer-events-none transition-all duration-300 group-hover:text-white/[0.05]">
               {index}
             </div>
             <div className="w-fit rounded-lg border border-primary/30 bg-primary/10 text-primary p-3">
               {icon}
             </div>
             <div className="space-y-3">
-              <h3 className="-tracking-4 pt-0.5 font-sans font-semibold text-sm text-black md:text-xl">
+              <h3 className="-tracking-4 pt-0.5 font-sans font-light text-sm md:text-md tracking-[0.2em]">
                 {title}
               </h3>
-              <h2 className="font-sans text-muted text-xs md:text-sm">
+              <p className="font-sans text-muted text-xs md:text-sm">
                 {description}
-              </h2>
+              </p>
             </div>
           </div>
         </div>

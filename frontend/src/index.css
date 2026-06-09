@@ -1,8 +1,5 @@
-
-/* =========================
-   🎨 FONT IMPORTS
-========================= */
-@import url('https://fonts.googleapis.com/css2?family=Geist+Mono:ital,wght@0,100..900;1,100..900&family=Geist:ital,wght@0,100..900;1,100..900&family=Outfit:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import url('https://fonts.cdnfonts.com/css/quadran');
 @import "tailwindcss";
 
 /* =========================
@@ -10,15 +7,11 @@
 ========================= */
 @custom-variant dark (&:where(.dark, .dark *));
 
-/* =========================
-   🎨 TAILWIND THEME
-   ✅ FIX 1: @theme uses var() — defers to runtime CSS vars correctly.
-   var() doesn't work here because @theme is build-time only.
-========================= */
-@theme {
-  --font-sans: "Outfit", sans-serif;
-  --font-mono: "Geist Mono", monospace;
 
+@theme {
+  --font-sans: 'Space Grotesk', sans-serif;
+  --font-mono: "Space Mono", monospace;
+--font-heading: 'Quadran', sans-serif;
   --color-main:         var(--main);
   --color-foreground:   var(--foreground);
   --color-muted:        var(--muted);
@@ -42,55 +35,19 @@
    Color palette: Electric Indigo primary · Sky accent · Warm neutrals
 ========================= */
 :root {
-  /* Surfaces */
-  --main:        #fafafa;
-  --foreground:  #0f0f10;
-  --muted:       #71717a;
-  /* ✅ FIX 2: removed alpha from --card (#f5f5f5ac → solid value) */
-  --card:        #ffffff;
-  --card-fg:     #18181b;
-  --border:      #e4e4e7;
-
-  /* ✅ FIX 4: Consistent brand — Electric Indigo across both modes */
-  --primary:     #570294;   /* indigo-500  */
-  --primary-fg:  #ffffff;
-
-  /* Secondary — violet, harmonizes with indigo */
-  --secondary:   #8b5cf6;   /* violet-500  */
-  --secondary-fg:#ffffff;
-
-  /* Accent — sky blue, cool complement */
-  --accent:      #0ea5e9;   /* sky-500     */
-  --accent-fg:   #ffffff;
-
-  /* Semantic */
-  --success:     #22c55e;
-  --warning:     #f59e0b;
-  --danger:      #ef4444;
-
-  /* Gradients — indigo → violet → sky, all harmonious */
-  --gradient-combo:  linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
-  --gradient-accent: linear-gradient(135deg, #8b5cf6 0%, #0ea5e9 100%);
-  --gradient-warm:   linear-gradient(135deg, #6366f1 0%, #ec4899 100%);
-  --gradient-full:   linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #0ea5e9 100%);
-}
-
-/* =========================
-   🌑 DARK MODE
-   Same hue family, shifted for dark backgrounds
-========================= */
-.dark {
-  /* Surfaces */
-  --main:        #09090b;   /* zinc-950     */
+ --main:        #0a0b0af7;   /* zinc-950     */
   --foreground:  #fafafa;   /* zinc-50      */
   --muted:       #71717a;   /* zinc-500     */
-  --card:        #18181b;   /* zinc-900     */
+  --card:        #171817;   /* zinc-900     */
   --card-fg:     #e4e4e7;   /* zinc-200     */
   --border:      #27272a;   /* zinc-800     */
 
   /* Primary — lighter indigo so it pops on dark */
-  --primary:     #8907e6;   /* indigo-400   */
+  --primary:     #F45932;   /* indigo-400   */
   --primary-fg:  #1e1b4b;
+
+   --grid-line: rgba(255, 255, 255, 0.05);
+  --grid-dot:  rgba(255, 255, 255, 0.15);
 
   /* Secondary — lighter violet */
   --secondary:   #a78bfa;   /* violet-400   */
@@ -107,9 +64,52 @@
 
   /* Dark-tuned gradients */
   --gradient-combo:  linear-gradient(135deg, #818cf8 0%, #a78bfa 100%);
-  --gradient-accent: linear-gradient(135deg, #a78bfa 0%, #38bdf8 100%);
+  --gradient-accent: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
   --gradient-warm:   linear-gradient(135deg, #818cf8 0%, #f472b6 100%);
   --gradient-full:   linear-gradient(135deg, #818cf8 0%, #a78bfa 50%, #38bdf8 100%);
+
+  
+}
+
+/* =========================
+   🌑 DARK MODE
+   Same hue family, shifted for dark backgrounds
+========================= */
+.dark {
+  /* Surfaces */
+  --main:        #FAFAFA;
+  --foreground:  #0f0f10;
+  --muted:       #71717a;
+  /* ✅ FIX 2: removed alpha from --card (#f5f5f5ac → solid value) */
+  --card:        #ffffff;
+  --card-fg:     #18181b;
+  --border:      #e4e4e7;
+
+  /* ✅ FIX 4: Consistent brand — Electric Indigo across both modes */
+  --primary:     #6f07b8;   /* indigo-500  */
+  --primary-fg:  #ffffff;
+
+  /* Secondary — violet, harmonizes with indigo */
+  --secondary:   #8b5cf6;   /* violet-500  */
+  --secondary-fg:#ffffff;
+
+  /* Accent — sky blue, cool complement */
+  --accent:      #0ea5e9;   /* sky-500     */
+  --accent-fg:   #ffffff;
+
+  --grid-line: rgba(255, 255, 255, 0.07);
+  --grid-dot:  rgba(255, 255, 255, 0.3);
+  
+  /* Semantic */
+  --success:     #22c55e;
+  --warning:     #f59e0b;
+  --danger:      #ef4444;
+
+  /* Gradients — indigo → violet → sky, all harmonious */
+  --gradient-combo:  linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  --gradient-accent: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
+  --gradient-warm:   linear-gradient(135deg, #6366f1 0%, #ec4899 100%);
+  --gradient-full:   linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #0ea5e9 100%);
 }
 
 /* =========================
@@ -136,7 +136,9 @@ html {
 .heading {
   letter-spacing: -0.03em;
 }
-
+h1,h2,h3,h4,h5,h6 {
+  @apply font-heading;
+}
 /* =========================
    🧱 UI ELEMENTS
 ========================= */
@@ -146,7 +148,10 @@ html {
   border: 1px solid var(--border);
   border-radius: 14px;
 }
-
+.dot-grid {
+    background-image: radial-gradient(circle,#1f293799 5px,#0000 5px);
+    background-size: 30px 30px;
+}
 .glass {
   background: color-mix(in srgb, var(--card) 60%, transparent);
   backdrop-filter: blur(16px);
@@ -172,7 +177,7 @@ html {
 
 /* Secondary → Accent */
 .gradient-text-accent {
-   background: linear-gradient(135deg,#6366f1,#38bdf8);
+   background: var(--gradient-accent) ;
     -webkit-text-fill-color: transparent;
     -webkit-background-clip: text;
     background-clip: text

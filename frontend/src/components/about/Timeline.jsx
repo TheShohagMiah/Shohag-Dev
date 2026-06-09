@@ -53,11 +53,11 @@ const Timeline = ({
           )}
         </div>
 
-        <h4 className="relative text-base font-semibold text-foreground mb-0.5">
+        <h4 className="relative text-sm font-light text-foreground tracking-[0.1em] mb-0.5">
           {degree}
         </h4>
 
-        <span className="relative block text-sm text-muted mb-3">
+        <span className="relative block text-sm font-semibold text-muted mb-3">
           {institution}
         </span>
 
